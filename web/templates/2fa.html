@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Two-Factor Authentication</h2>
+<form method="post">
+    <input type="text" name="token" placeholder="Enter 6-digit code" class="form-control mb-2" required>
+    <button type="submit" class="btn btn-primary">Verify</button>
+</form>
+{% endblock %}

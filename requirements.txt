@@ -1,0 +1,23 @@
+# Flask Web Framework
+flask
+
+# Flask Extensions
+flask-login
+
+# MySQL Database Connector
+mysql-connector-python
+
+# Encryption Libraries
+cryptography
+
+# Environment Variables Loader
+python-dotenv
+
+# Two-Factor Authentication (TOTP)
+pyotp
+
+# QR Code Generator for 2FA Setup
+qrcode
+
+# Production Server
+gunicorn

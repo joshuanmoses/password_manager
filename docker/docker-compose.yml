@@ -1,0 +1,47 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+
+@author: Joshua Moses
+"""
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: password_manager_db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: password_manager
+      MYSQL_USER: user
+      MYSQL_PASSWORD: userpassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  web:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.web
+    container_name: password_manager_web
+    expose:
+      - "5000"
+    environment:
+      FLASK_APP: web
+    depends_on:
+      - mysql
+
+  nginx:
+    image: nginx:latest
+    container_name: password_manager_nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - web
+
+volumes:
+  db_data:
+

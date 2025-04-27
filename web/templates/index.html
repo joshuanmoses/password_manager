@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Stored Credentials</h2>
+
+<form method="GET" class="mb-4">
+  <div class="input-group">
+    <input type="text" name="search" value="{{ search }}" class="form-control" placeholder="Search by credential name...">
+    <button class="btn btn-outline-secondary" type="submit">Search</button>
+  </div>
+</form>
+
+<a href="{{ url_for('add') }}" class="btn btn-success mb-3">Add New Credential</a>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Credential Name</th>
+      <th>Address</th>
+      <th>Password</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for cred in credentials %}
+    <tr>
+      <td>{{ cred.username }}</td>
+      <td>{{ cred.credential_name }}</td>
+      <td>{{ cred.address }}</td>
+      <td>{{ cred.password }}</td>
+      <td>
+        <a href="{{ url_for('edit', id=cred.id) }}" class="btn btn-sm btn-primary">Edit</a>
+        <a href="{{ url_for('delete', id=cred.id) }}" class="btn btn-sm btn-danger">Delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<nav>
+  <ul class="pagination">
+    {% if page > 1 %}
+    <li class="page-item">
+      <a class="page-link" href="{{ url_for('index', page=page-1, search=search) }}">Previous</a>
+    </li>
+    {% endif %}
+    {% for p in range(1, total_pages+1) %}
+    <li class="page-item {% if p == page %}active{% endif %}">
+      <a class="page-link" href="{{ url_for('index', page=p, search=search) }}">{{ p }}</a>
+    </li>
+    {% endfor %}
+    {% if page < total_pages %}
+    <li class="page-item">
+      <a class="page-link" href="{{ url_for('index', page=page+1, search=search) }}">Next</a>
+    </li>
+    {% endif %}
+  </ul>
+</nav>
+{% endblock %}
