@@ -187,6 +187,62 @@ password-manager/
 </ul>
 
 ---
+<h1>🚀 Quick Setup Cheatsheet</h1>
+
+<p>This is the fastest way to get the Password Manager system up and running!</p>
+
+<ol>
+  <li><strong>Install Docker & Docker Compose</strong><br>
+      <code>https://docs.docker.com/get-docker/</code>
+  </li>
+
+  <li><strong>Clone the repository:</strong><br>
+      <pre><code>git clone https://github.com/your-repo/password-manager.git
+cd password-manager</code></pre>
+  </li>
+
+  <li><strong>Create and activate virtual environment (optional but recommended):</strong><br>
+      <pre><code>python3 -m venv venv
+source venv/bin/activate</code></pre>
+  </li>
+
+  <li><strong>Install Python dependencies:</strong><br>
+      <pre><code>pip install -r requirements.txt</code></pre>
+  </li>
+
+  <li><strong>Create a .env file (environment variables):</strong><br>
+      <pre><code>(copy the template provided in README and customize it)</code></pre>
+  </li>
+
+  <li><strong>Start the MySQL container only:</strong><br>
+      <pre><code>cd docker
+docker-compose up -d mysql</code></pre>
+  </li>
+
+  <li><strong>Initialize the database:</strong><br>
+      <pre><code>cd ..
+python main.py --init-db</code></pre>
+  </li>
+
+  <li><strong>Launch the full application (Web App + Nginx + MySQL):</strong><br>
+      <pre><code>docker-compose up --build</code></pre>
+  </li>
+
+  <li><strong>Access the web interface:</strong><br>
+      <pre><code>http://localhost</code></pre>
+      <p>Login: <code>admin / adminpassword</code> + your 2FA code.</p>
+  </li>
+
+</ol>
+
+<hr>
+
+<h2>✅ You're ready to manage credentials securely!</h2>
+<ul>
+  <li>Add new credentials</li>
+  <li>Edit or delete entries</li>
+  <li>Use Two-Factor Authentication for secure access</li>
+</ul>
 
 <h2>👨‍💻 Author</h2>
 
